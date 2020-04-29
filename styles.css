@@ -1,0 +1,12 @@
+table.steelBlueCols {
+    border: 4px solid #08868f;
+    background-color: #08868f;
+    width: 400px;
+    text-align: center;
+    border-collapse: collapse;
+  }
+  table.steelBlueCols tbody{
+    font-size: 12px;
+    font-weight: bold;
+    color: #FFFFFF;
+  }
