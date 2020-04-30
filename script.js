@@ -1,33 +1,44 @@
-let bookData = [];
 let counter = 0
 let title = document.getElementById('title');
 let author = document.getElementById('author');
 let pages = document.getElementById('pages');
 const root = document.getElementById('book-info');
-let row;
-let printTitle;
-let printAuthor;
-let printPages;
-let del;
-let read;
-let sno;
+let row,
+printTitle,
+printAuthor,
+printPages,
+del,
+read,
+sno;
+
+
+
+let data = localStorage.getItem("data");
+var bookData;
+  if(data){
+    bookData = JSON.parse(data)
+    console.log(bookData)
+  }else{bookData = []}
+ 
+// document.getElementById('btn').addEventListener('click', addNewBook)
+
+function Book(BookTitle,BookAuthor,BookPages){
+  this.title = BookTitle,
+  this.author = BookAuthor,
+  this.pages = BookPages
+}
 
 function addNewBook(){
-  counter += 1;
+  counter += 1
   let select = document.getElementById('select');
-  let option = select.options[select.selectedIndex].text
-  console.log(select.options[select.selectedIndex].value)
+  let option = select.options[select.selectedIndex].text;
  
   
   if(title.value.trim() && author.value.trim() && pages.value > 0 && select.options[select.selectedIndex].value !== 'falsy'){
-    function Book(Btitle,Bauthor,Bpages){
-      this.title = Btitle,
-      this.author = Bauthor,
-      this.pages = Bpages
-    }
     let book = new Book(title.value, author.value, pages.value);
+   console.log(typeof bookData)
     bookData.push(book);
-    console.log(bookData)
+    localStorage.setItem('data', JSON.stringify(bookData))
     row = document.createElement('tr');
     row.setAttribute('data-index', counter)
   
@@ -57,3 +68,5 @@ function deleteElem() {
 let parentTag = event.target.parentElement;
 parentTag.remove();
 }
+
+// localStorage.clear()
